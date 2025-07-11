@@ -23,17 +23,17 @@ jobs:
           sudo gem install --no-document fpm
 
       - name: C++ derlemesi yap
-        run: make
+        run: make clean all
 
       - name: Paket klasörünü hazırla
         run: |
           mkdir -p pkg/usr/local/bin
-          cp bin/test pkg/usr/local/bin/
+          cp bin/hellow pkg/usr/local/bin/
 
       - name: .deb ve .rpm paketlerini oluştur
         run: |
-          fpm -s dir -t deb -n test -v "${GITHUB_REF_NAME}" -C pkg .
-          fpm -s dir -t rpm -n test -v "${GITHUB_REF_NAME}" -C pkg .
+          fpm -s dir -t deb -n hellow -v "${GITHUB_REF_NAME}" -C pkg .
+          fpm -s dir -t rpm -n hellow -v "${GITHUB_REF_NAME}" -C pkg .
 
       - name: Release oluştur ve dosyaları yükle
         uses: softprops/action-gh-release@v2
