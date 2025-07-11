@@ -2,9 +2,8 @@
 #include <string>
 
 int main() {
-    std::string name;
-    std::cout << "Enter your name: ";
-    std::getline(std::cin, name);
+    char* username = std::getenv("USER");
+    std::string name = username ? username : "unknown";
     std::cout << "Hello, " << name << "!" << std::endl;
     return 0;
 }
